@@ -1,0 +1,17 @@
+def imshow(img):
+   """
+   shows an imagenet-normalized image on the screen
+   """
+   mean = torch.tensor([0.485, 0.456, 0.406], dtype=torch.float32)
+   std = torch.tensor([0.229, 0.224, 0.225], dtype=torch.float32)
+   unnormalize = T.Normalize((-mean / std).tolist(), (1.0 / std).tolist())
+   npimg = unnormalize(img).numpy()
+   plt.imshow(np.transpose(npimg, (1, 2, 0)))
+   plt.show()
+
+dataset = STL10("./", split='train', transform=Augment(96), download=True)
+# 99 is the image id 
+imshow(dataset[99][0][0])
+imshow(dataset[99][0][0])
+imshow(dataset[99][0][0])
+imshow(dataset[99][0][0])
